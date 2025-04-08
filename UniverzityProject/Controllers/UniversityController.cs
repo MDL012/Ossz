@@ -65,8 +65,11 @@ namespace UniverzityProject.Controllers
         public async Task<IActionResult> GetTeachersDepartment3()
         {
             var query = await _context.Teachers
-                .Join(
-                    _context.Departments,teacher => teacher.DepartmentId, department => department.Id, (teacher, department) => new { Name = teacher.Name, Department = department.Name}
+                .Join(                  
+                    _context.Departments,
+                    teacher => teacher.DepartmentId, 
+                    department => department.Id, 
+                    (teacher, department) => new { Name = teacher.Name, Department = department.Name}
                 ).ToListAsync();
             return Ok(query);
         }
